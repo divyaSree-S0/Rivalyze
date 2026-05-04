@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <title>Rivalyze</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f172a;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #fff;
+      display: flex;
+      flex-direction: column;  /* ✅ stack navbar + content vertically */
+      height: 100vh;
+    }
 
-  .navbar {
+    .navbar {
       display: flex;
       align-items: center;
       padding: 10px 20px;
@@ -25,7 +24,7 @@ body {
     }
 
     .logo {
-      height: 40px;   /* control size here */
+      height: 40px;
       width: auto;
     }
 
@@ -36,92 +35,89 @@ body {
       color: #111;
     }
 
-.container {
-  text-align: center;
-  max-width: 500px;
-}
+    /* ✅ This wrapper centers the loader content in remaining space */
+    .main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
+    .container {
+      text-align: center;
+      max-width: 500px;
+      padding: 0 20px;
+    }
 
-.fact {
-  font-size: 16px;
-  color: #94a3b8;
-  margin-bottom: 30px;
-  min-height: 40px;
-}
+    h1 { font-size: 24px; margin-bottom: 20px; }
 
-.progress-bar {
-  width: 100%;
-  height: 6px;
-  background: #1e293b;
-  border-radius: 10px;
-  overflow: hidden;
-}
+    .fact {
+      font-size: 16px;
+      color: #94a3b8;
+      margin-bottom: 30px;
+      min-height: 40px;
+    }
 
-.progress {
-  height: 100%;
-  width: 0%;
-  background: #22c55e;
-  animation: load 12s linear forwards;
-}
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #1e293b;
+      border-radius: 10px;
+      overflow: hidden;
+    }
 
-@keyframes load {
-  from { width: 0%; }
-  to { width: 100%; }
-}
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: #22c55e;
+      animation: load 12s linear forwards;
+    }
 
-.note {
-  margin-top: 20px;
-  font-size: 13px;
-  color: #64748b;
-}
-</style>
+    @keyframes load {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #64748b;
+    }
+  </style>
 </head>
-
 <body>
-   <div class="navbar">
+
+  <div class="navbar">
     <img src="logo.jpeg" alt="Rivalyze Logo" class="logo">
     <div class="brand-name">Rivalyze</div>
   </div>
 
-
-<div class="container">
-  <h1>🚀 Generating Your AI Competitor Report...</h1>
-
-  <div class="fact" id="fact">
-    Analyzing brand positioning...
+  <div class="main">         <!-- ✅ wraps the loader -->
+    <div class="container">
+      <h1>🚀 Generating Your AI Competitor Report...</h1>
+      <div class="fact" id="fact">Analyzing brand positioning...</div>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+      <div class="note">This may take up to 1–2 minutes. Check your email shortly.</div>
+    </div>
   </div>
 
-  <div class="progress-bar">
-    <div class="progress"></div>
-  </div>
-
-  <div class="note">
-    This may take up to 1–2 minutes. Check your email shortly.
-  </div>
-</div>
-
-<script>
-const facts = [
-  "Analyzing brand positioning...",
-  "Scanning competitor ad strategies...",
-  "Identifying audience targeting patterns...",
-  "Evaluating messaging frameworks...",
-  "Comparing strengths & weaknesses...",
-  "Generating strategic insights...",
-  "Almost done..."
-];
-
-let index = 0;
-
-setInterval(() => {
-  index = (index + 1) % facts.length;
-  document.getElementById("fact").innerText = facts[index];
-}, 3000);
-</script>
-
+  <script>
+    const facts = [
+      "Analyzing brand positioning...",
+      "Scanning competitor ad strategies...",
+      "Identifying audience targeting patterns...",
+      "Evaluating messaging frameworks...",
+      "Comparing strengths & weaknesses...",
+      "Generating strategic insights...",
+      "Almost done..."
+    ];
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % facts.length;
+      document.getElementById("fact").innerText = facts[index];
+    }, 3000);
+  </script>
 </body>
 </html>
